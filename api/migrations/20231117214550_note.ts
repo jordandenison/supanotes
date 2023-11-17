@@ -5,8 +5,8 @@ export async function up(knex: Knex): Promise<void> {
   await knex.schema.createTable('notes', (table) => {
     table.uuid('id').primary()
 
-    table.string('title').unique()
-    table.text('body')
+    table.string('title').notNullable().unique()
+    table.text('body').notNullable()
     table.uuid('userId').references('id').inTable('users').notNullable().index().onDelete('CASCADE')
 
     table.timestamp('createdAt').notNullable()
