@@ -59,4 +59,13 @@ export const noteQuerySchema = Type.Intersect(
 )
 export type NoteQuery = Static<typeof noteQuerySchema>
 export const noteQueryValidator = getValidator(noteQuerySchema, queryValidator)
-export const noteQueryResolver = resolve<NoteQuery, HookContext<NoteService>>({})
+export const noteQueryResolver = resolve<NoteQuery, HookContext<NoteService>>({
+  // If there is a user (e.g. with authentication), they are only allowed to see their own data
+  userId: async (value, user, context) => {
+    if (context.params.user) {
+      return context.params.user.id
+    }
+
+    return value
+  }
+})
