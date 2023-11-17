@@ -11,7 +11,7 @@ import type { UserService } from './users.class'
 // Main data model schema
 export const userSchema = Type.Object(
   {
-    id: Type.Number(),
+    id: Type.String({ format: 'uuid' }),
     username: Type.String(),
     password: Type.Optional(Type.String())
   },
@@ -31,7 +31,7 @@ export const userDataSchema = Type.Object(
   {
     id: Type.Optional(Type.String({ format: 'uuid' })),
     username: Type.String(),
-    password: Type.String(),
+    password: Type.String()
   },
   { $id: 'UserData', additionalProperties: false }
 )

@@ -7,7 +7,7 @@
   "keywords": [
     "feathers"
   ],
-  "author": {},
+  "author": "Jordan Denison",
   "contributors": [],
   "bugs": {},
   "engines": {
@@ -35,15 +35,18 @@
   ],
   "main": "lib/client",
   "scripts": {
-    "dev": "nodemon -x ts-node src/index.ts",
-    "compile": "shx rm -rf lib/ && tsc",
-    "start": "node lib/",
-    "prettier": "npx prettier \"**/*.ts\" --write",
-    "mocha": "cross-env NODE_ENV=test mocha test/ --require ts-node/register --recursive --extension .ts --exit",
-    "test": "cross-env NODE_ENV=test npm run migrate && npm run mocha",
     "bundle:client": "npm run compile && npm pack --pack-destination ./public",
+    "compile": "shx rm -rf lib/ && tsc",
+    "dev": "nodemon -x ts-node src/index.ts",
+    "format": "npx prettier \"**/*.ts\" --write",
+    "format-lint": "npm run format && npm run lint",
+    "lint": "eslint --fix --ignore-path .gitignore --ext .js,.jsx,.ts,.tsx src --report-unused-disable-directives --max-warnings 0 --cache --cache-strategy content",
     "migrate": "knex migrate:latest",
-    "migrate:make": "knex migrate:make"
+    "migrate:make": "knex migrate:make",
+    "mocha": "cross-env NODE_ENV=test mocha test/ --require ts-node/register --recursive --extension .ts --exit",
+    "prettier": "npx prettier \"**/*.ts\" --write",
+    "start": "node lib/",
+    "test": "cross-env NODE_ENV=test npm run migrate && npm run mocha"
   },
   "dependencies": {
     "@feathersjs/adapter-commons": "^5.0.11",
@@ -72,8 +75,13 @@
     "@types/mocha": "^10.0.4",
     "@types/node": "^20.9.1",
     "@types/uuid": "^9.0.7",
+    "@typescript-eslint/eslint-plugin": "^6.11.0",
+    "@typescript-eslint/parser": "^6.11.0",
     "axios": "^1.6.2",
     "cross-env": "^7.0.3",
+    "eslint-config-prettier": "^9.0.0",
+    "eslint-import-resolver-typescript": "^3.6.1",
+    "eslint-plugin-unused-imports": "^3.0.0",
     "mocha": "^10.2.0",
     "nodemon": "^3.0.1",
     "prettier": "^3.1.0",

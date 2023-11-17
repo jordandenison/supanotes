@@ -3,6 +3,7 @@ import { authenticate } from '@feathersjs/authentication'
 
 import { hooks as schemaHooks } from '@feathersjs/schema'
 
+import type { Application } from '../../declarations'
 import {
   userDataValidator,
   userPatchValidator,
@@ -14,7 +15,6 @@ import {
   userQueryResolver
 } from './users.schema'
 
-import type { Application } from '../../declarations'
 import { UserService, getOptions } from './users.class'
 import { userPath, userMethods } from './users.shared'
 
