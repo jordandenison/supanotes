@@ -1,0 +1,43 @@
+version: '3'
+services:
+  frontend:
+    build:
+      context: ./rtninja-mes-frontend/.
+      dockerfile: ../docker/Dockerfile_frontend
+    ports:
+      - 3000:3000
+    volumes:
+      - ./rtninja-mes-frontend:/usr/src/app:consistent
+    command: /usr/src/app/entrypoint.sh
+  backend:
+    build:
+      context: ./rtninja-mes-backend/.
+      dockerfile: ../docker/Dockerfile_backend
+    depends_on:
+      - postgres
+    env_file:
+      - ./env/backend.env
+    ports:
+      - 3001:3001
+    volumes:
+      - ./rtninja-mes-backend:/usr/src/app:consistent
+    command: /usr/src/app/entrypoint.sh
+  postgres:
+    image: postgres:15
+    restart: on-failure
+    environment:
+      POSTGRES_DB: rtninja
+      POSTGRES_USER: rtninja
+      POSTGRES_PASSWORD: rtninja
+    ports:
+      - 9432:5432
+    volumes:
+      - ./data/pg:/var/lib/postgresql/data:consistent
+  redis:
+    image: redis:6.2-alpine
+    restart: on-failure
+    ports:
+      - '6379:6379'
+    command: redis-server --save 20 1 --loglevel warning
+    volumes: 
+      - ./data/redis:/data:consistent
