@@ -1,0 +1,16 @@
+{
+  "host": "localhost",
+  "port": 3001,
+  "public": "./public/",
+  "origins": [
+    "http://denisonweb-local-development.com/:3001"
+  ],
+  "paginate": {
+    "default": 10,
+    "max": 50
+  },
+  "postgresql": {
+    "client": "pg",
+    "connection": "postgres://postgres:@localhost:5432/supanotes"
+  }
+}
