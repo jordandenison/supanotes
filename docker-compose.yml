@@ -17,9 +17,9 @@ services:
     image: postgres:15
     restart: on-failure
     environment:
-      POSTGRES_DB: rtninja
-      POSTGRES_USER: rtninja
-      POSTGRES_PASSWORD: rtninja
+      POSTGRES_DB: supanotes
+      POSTGRES_USER: supanotes
+      POSTGRES_PASSWORD: supanotes
     ports:
       - 9432:5432
     volumes:

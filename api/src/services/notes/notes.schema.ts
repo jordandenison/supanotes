@@ -11,7 +11,10 @@ import type { NoteService } from './notes.class'
 export const noteSchema = Type.Object(
   {
     id: Type.Number(),
-    text: Type.String()
+    title: Type.String(),
+    body: Type.String(),
+    createdAt: Type.String({ format: 'date-time' }),
+    updatedAt: Type.String({ format: 'date-time' })
   },
   { $id: 'Note', additionalProperties: false }
 )
@@ -22,9 +25,14 @@ export const noteResolver = resolve<Note, HookContext<NoteService>>({})
 export const noteExternalResolver = resolve<Note, HookContext<NoteService>>({})
 
 // Schema for creating new entries
-export const noteDataSchema = Type.Pick(noteSchema, ['text'], {
-  $id: 'NoteData'
-})
+export const noteDataSchema = Type.Object(
+  {
+    id: Type.Optional(Type.String({ format: 'uuid' })),
+    title: Type.String(),
+    body: Type.String(),
+  },
+  { $id: 'NoteData', additionalProperties: false }
+)
 export type NoteData = Static<typeof noteDataSchema>
 export const noteDataValidator = getValidator(noteDataSchema, dataValidator)
 export const noteDataResolver = resolve<Note, HookContext<NoteService>>({})
@@ -38,7 +46,7 @@ export const notePatchValidator = getValidator(notePatchSchema, dataValidator)
 export const notePatchResolver = resolve<Note, HookContext<NoteService>>({})
 
 // Schema for allowed query properties
-export const noteQueryProperties = Type.Pick(noteSchema, ['id', 'text'])
+export const noteQueryProperties = Type.Pick(noteSchema, ['id', 'title'])
 export const noteQuerySchema = Type.Intersect(
   [
     querySyntax(noteQueryProperties),

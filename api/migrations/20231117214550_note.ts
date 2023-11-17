@@ -5,7 +5,11 @@ export async function up(knex: Knex): Promise<void> {
   await knex.schema.createTable('notes', (table) => {
     table.increments('id')
 
-    table.string('text')
+    table.string('title').unique()
+    table.text('body')
+
+    table.timestamp('createdAt').notNullable()
+    table.timestamp('updatedAt').notNullable()
   })
 }
 

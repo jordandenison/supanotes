@@ -1,6 +1,6 @@
 // For more information about this file see https://dove.feathersjs.com/guides/cli/databases.html
-import knex from 'knex'
-import type { Knex } from 'knex'
+import knex, { type Knex } from 'knex'
+import { knexSnakeCaseMappers } from 'objection'
 import type { Application } from './declarations'
 
 declare module './declarations' {
@@ -11,7 +11,11 @@ declare module './declarations' {
 
 export const postgresql = (app: Application) => {
   const config = app.get('postgresql')
-  const db = knex(config!)
+  const db = knex(
+    Object.assign(config!, {
+      ...knexSnakeCaseMappers()
+    })
+  )
 
   app.set('postgresqlClient', db)
 }
