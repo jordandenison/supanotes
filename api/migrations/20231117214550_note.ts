@@ -3,10 +3,11 @@ import type { Knex } from 'knex'
 
 export async function up(knex: Knex): Promise<void> {
   await knex.schema.createTable('notes', (table) => {
-    table.increments('id')
+    table.uuid('id').primary()
 
     table.string('title').unique()
     table.text('body')
+    table.uuid('userId').references('id').inTable('users').notNullable().index().onDelete('CASCADE')
 
     table.timestamp('createdAt').notNullable()
     table.timestamp('updatedAt').notNullable()

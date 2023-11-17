@@ -3,6 +3,7 @@ import { authenticate } from '@feathersjs/authentication'
 
 import { hooks as schemaHooks } from '@feathersjs/schema'
 
+import type { Application } from '../../declarations'
 import {
   noteDataValidator,
   notePatchValidator,
@@ -14,7 +15,6 @@ import {
   noteQueryResolver
 } from './notes.schema'
 
-import type { Application } from '../../declarations'
 import { NoteService, getOptions } from './notes.class'
 import { notePath, noteMethods } from './notes.shared'
 

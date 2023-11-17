@@ -10,9 +10,10 @@ import type { NoteService } from './notes.class'
 // Main data model schema
 export const noteSchema = Type.Object(
   {
-    id: Type.Number(),
+    id: Type.String({ format: 'uuid' }),
     title: Type.String(),
     body: Type.String(),
+    userId: Type.String({ format: 'uuid' }),
     createdAt: Type.String({ format: 'date-time' }),
     updatedAt: Type.String({ format: 'date-time' })
   },
@@ -30,6 +31,7 @@ export const noteDataSchema = Type.Object(
     id: Type.Optional(Type.String({ format: 'uuid' })),
     title: Type.String(),
     body: Type.String(),
+    userId: Type.String({ format: 'uuid' })
   },
   { $id: 'NoteData', additionalProperties: false }
 )
@@ -46,7 +48,7 @@ export const notePatchValidator = getValidator(notePatchSchema, dataValidator)
 export const notePatchResolver = resolve<Note, HookContext<NoteService>>({})
 
 // Schema for allowed query properties
-export const noteQueryProperties = Type.Pick(noteSchema, ['id', 'title'])
+export const noteQueryProperties = Type.Pick(noteSchema, ['id', 'title', 'userId'])
 export const noteQuerySchema = Type.Intersect(
   [
     querySyntax(noteQueryProperties),
