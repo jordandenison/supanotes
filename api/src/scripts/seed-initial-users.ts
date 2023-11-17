@@ -3,6 +3,10 @@ import type { Application } from '../declarations'
 import { initialUsers } from '../data/initial-users'
 
 export const seedInitialusers = async (app: Application) => {
+  if (process.env.NODE_ENV === 'production') {
+    return
+  }
+
   const { total } = await app.service('users').find({})
 
   if (!total) {
