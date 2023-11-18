@@ -1,7 +1,7 @@
 {
   "name": "supanotes",
   "description": "A simple note creating and sharing API",
-  "version": "0.0.2",
+  "version": "1.0.0",
   "homepage": "",
   "private": true,
   "keywords": [
@@ -37,7 +37,7 @@
   "scripts": {
     "bundle:client": "npm run compile && npm pack --pack-destination ./public",
     "compile": "shx rm -rf lib/ && tsc",
-    "dev": "nodemon -x ts-node src/index.ts",
+    "dev": "npm run migrate && nodemon -x ts-node src/index.ts",
     "format": "npx prettier \"**/*.ts\" --write",
     "format-lint": "npm run format && npm run lint",
     "lint": "eslint --fix --ignore-path .gitignore --ext .js,.jsx,.ts,.tsx src --report-unused-disable-directives --max-warnings 0 --cache --cache-strategy content",
@@ -69,6 +69,7 @@
     "koa-static": "^5.0.0",
     "objection": "^3.1.2",
     "pg": "^8.11.3",
+    "supanotes": "https://supanotes.denisonweb.com/supanotes-0.0.2.tgz",
     "swagger-ui-dist": "^5.10.0",
     "uuid": "^9.0.1",
     "winston": "^3.11.0"

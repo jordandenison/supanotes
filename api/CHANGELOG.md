@@ -1,5 +1,10 @@
 # Changelog
 
+## [1.0.0] - 2023-11-18
+
+### Added
+- `heroku` deployed the app to heroku
+
 ## [0.0.2] - 2023-11-18
 
 ### Added

@@ -13,7 +13,7 @@ export const getSwaggerConfig = () => {
       info: {
         title: 'Supanotes API documentation',
         description: 'A simple note creating and sharing API',
-        version: '0.0.2'
+        version: '1.0.0'
       },
       tags: [
         {
