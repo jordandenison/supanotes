@@ -3,6 +3,13 @@ import { feathers } from '@feathersjs/feathers'
 import configuration from '@feathersjs/configuration'
 import { koa, rest, bodyParser, errorHandler, parseAuthentication, cors, serveStatic } from '@feathersjs/koa'
 import socketio from '@feathersjs/socketio'
+import type { ServiceSwaggerOptions } from 'feathers-swagger'
+
+declare module '@feathersjs/feathers' {
+  interface ServiceOptions {
+    docs?: ServiceSwaggerOptions
+  }
+}
 
 import swagger from 'feathers-swagger'
 import { configurationValidator } from './configuration'
