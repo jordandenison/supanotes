@@ -7,8 +7,7 @@ import { app } from '../src/app'
 import { createClient } from '../src/client'
 import type { UserData } from '../src/client'
 
-const port = app.get('port')
-const appUrl = `http://${app.get('host')}:${port}`
+const appUrl = `http://${app.get('host')}:${app.get('port')}`
 
 describe('application client tests', () => {
   const client = createClient(rest(appUrl).axios(axios))
@@ -19,8 +18,8 @@ describe('application client tests', () => {
 
   it('creates and authenticates a user with email and password', async () => {
     const userData: UserData = {
-      username: 'test@denisonweb.com',
-      password: 'test1234'
+      username: 'test-client@denisonweb.com',
+      password: 'supasecret'
     }
 
     await client.service('users').create(userData)
@@ -36,7 +35,6 @@ describe('application client tests', () => {
 
     await client.logout()
 
-    // Remove the test user on the server
-    // await app.service('users').remove(user.id)
+    await app.service('users').remove(user.id)
   })
 })
