@@ -4,6 +4,9 @@ import type { TransportConnection, Application } from '@feathersjs/feathers'
 import authenticationClient from '@feathersjs/authentication-client'
 import type { AuthenticationClientOptions } from '@feathersjs/authentication-client'
 
+import { shareNoteClient } from './services/share-notes/share-notes.shared'
+export type { ShareNote, ShareNoteData, ShareNoteQuery } from './services/share-notes/share-notes.shared'
+
 import { noteClient } from './services/notes/notes.shared'
 export type { Note, NoteData, NoteQuery, NotePatch } from './services/notes/notes.shared'
 
@@ -39,5 +42,6 @@ export const createClient = <Configuration = any>(
 
   client.configure(userClient)
   client.configure(noteClient)
+  client.configure(shareNoteClient)
   return client
 }

@@ -19,6 +19,8 @@ import {
 import { NoteService, getOptions } from './notes.class'
 import { notePath, noteMethods } from './notes.shared'
 
+import { fetchIndividualSharedNote } from './hooks/fetch-individual-shared-note'
+import { fetchSharedNotes } from './hooks/fetch-shared-notes'
 
 export * from './notes.class'
 export * from './notes.schema'
@@ -44,7 +46,7 @@ export const note = (app: Application) => {
     before: {
       all: [schemaHooks.validateQuery(noteQueryValidator), schemaHooks.resolveQuery(noteQueryResolver)],
       find: [],
-      get: [],
+      get: [fetchIndividualSharedNote],
       create: [
         schemaHooks.validateData(noteDataValidator),
         schemaHooks.resolveData(noteDataResolver),
@@ -54,7 +56,8 @@ export const note = (app: Application) => {
       remove: []
     },
     after: {
-      all: []
+      all: [],
+      find: [fetchSharedNotes]
     },
     error: {
       all: []

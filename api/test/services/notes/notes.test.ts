@@ -49,7 +49,7 @@ describe('notes service', () => {
   })
 
   it('creates a note with title and body', async () => {
-    const title = 'Test note'
+    const title = `Test note ${uuidv4()}`
     const body = 'Test body of the test note'
     const note = await clients[0].service('notes').create({ title, body })
 
@@ -143,7 +143,6 @@ describe('notes service', () => {
   it('throws an error when title is over 100 characters', async () => {
     const title = Array.from({ length: 101 }, () => '0').join('')
     const body = 'Test body of the test note'
-    console.log('sjfhdskjfhsjkdfhkjswdhf')
     try {
       await clients[0].service('notes').create({ title, body } as NoteData)
       assert.fail('Should not reach this point')
