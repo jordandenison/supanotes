@@ -7,6 +7,10 @@ export const logError = async (context: HookContext, next: NextFunction) => {
     await next()
     // eslint-disable-next-line
   } catch (error: any) {
+    if (process.env.NODE_ENV === 'test') {
+      throw error
+    }
+
     if (error.stack) {
       logger.error(error.stack.slice(0, 500))
     }
