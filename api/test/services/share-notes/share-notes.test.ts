@@ -1,4 +1,3 @@
-// For more information about this file see https://dove.feathersjs.com/guides/cli/service.test.html
 import assert from 'assert'
 import axios from 'axios'
 import rest from '@feathersjs/rest-client'
@@ -122,11 +121,35 @@ describe('share-notes service', () => {
     }
   })
 
-  it('share notes cannot be updated', async () => {
+  it('users cannot update share notes', async () => {
     const title = `Test note ${uuidv4()}`
     const body = 'Test body of the test note'
     try {
       await (clients[0].service('share-notes') as any).patch({ title, body }) // eslint-disable-line
+      assert.fail('Should not reach this point')
+    } catch (e: unknown) {
+      const error = e as FeathersError
+      assert.equal(error.code, 405)
+    }
+  })
+
+  it('users cannot find share notes externally', async () => {
+    try {
+      await (clients[0].service('share-notes')).find({})
+      assert.fail('Should not reach this point')
+    } catch (e: unknown) {
+      const error = e as FeathersError
+      assert.equal(error.code, 405)
+    }
+  })
+
+  it('users cannot get individual share notes externally', async () => {
+    const title = `Test note ${uuidv4()}`
+    const body = 'Test body of the test note'
+    const note = await clients[0].service('notes').create({ title, body })
+    const shareNote = await clients[0].service('share-notes').create({ noteId: note.id, userId: users[1].id })
+    try {
+      await (clients[0].service('share-notes')).get(shareNote.id)
       assert.fail('Should not reach this point')
     } catch (e: unknown) {
       const error = e as FeathersError
