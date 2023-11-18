@@ -11,8 +11,8 @@ import type { NoteService } from './notes.class'
 export const noteSchema = Type.Object(
   {
     id: Type.String({ format: 'uuid' }),
-    title: Type.String(),
-    body: Type.String(),
+    title: Type.String({ maxLength: 100 }),
+    body: Type.String({ maxLength: 5000 }),
     userId: Type.String({ format: 'uuid' }),
     createdAt: Type.String({ format: 'date-time' }),
     updatedAt: Type.String({ format: 'date-time' })
@@ -29,9 +29,8 @@ export const noteExternalResolver = resolve<Note, HookContext<NoteService>>({})
 export const noteDataSchema = Type.Object(
   {
     id: Type.Optional(Type.String({ format: 'uuid' })),
-    title: Type.String(),
-    body: Type.String(),
-    userId: Type.String({ format: 'uuid' })
+    title: Type.String({ maxLength: 100 }),
+    body: Type.String({ maxLength: 5000 })
   },
   { $id: 'NoteData', additionalProperties: false }
 )
