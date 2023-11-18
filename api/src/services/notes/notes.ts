@@ -1,7 +1,7 @@
 // For more information about this file see https://dove.feathersjs.com/guides/cli/service.html
 import { authenticate } from '@feathersjs/authentication'
-
 import { hooks as schemaHooks } from '@feathersjs/schema'
+import { createSwaggerServiceOptions } from 'feathers-swagger'
 
 import type { Application } from '../../declarations'
 import { setUserId } from '../../hooks/set-user-id'
@@ -13,7 +13,11 @@ import {
   noteExternalResolver,
   noteDataResolver,
   notePatchResolver,
-  noteQueryResolver
+  noteQueryResolver,
+  noteSchema,
+  noteDataSchema,
+  notePatchSchema,
+  noteQuerySchema
 } from './notes.schema'
 
 import { NoteService, getOptions } from './notes.class'
@@ -32,7 +36,10 @@ export const note = (app: Application) => {
     // A list of all methods this service exposes externally
     methods: noteMethods,
     // You can add additional custom events to be sent to clients here
-    events: []
+    events: [],
+    docs: createSwaggerServiceOptions({
+      schemas: { noteSchema, noteDataSchema, notePatchSchema, noteQuerySchema }
+    })
   })
   // Initialize hooks
   app.service(notePath).hooks({

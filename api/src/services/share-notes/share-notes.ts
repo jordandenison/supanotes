@@ -1,7 +1,7 @@
 // For more information about this file see https://dove.feathersjs.com/guides/cli/service.html
 import { authenticate } from '@feathersjs/authentication'
-
 import { hooks as schemaHooks } from '@feathersjs/schema'
+import { createSwaggerServiceOptions } from 'feathers-swagger'
 
 import type { Application } from '../../declarations'
 import { disableExternal } from '../../hooks/disable'
@@ -11,7 +11,10 @@ import {
   shareNoteResolver,
   shareNoteExternalResolver,
   shareNoteDataResolver,
-  shareNoteQueryResolver
+  shareNoteQueryResolver,
+  shareNoteSchema,
+  shareNoteDataSchema,
+  shareNoteQuerySchema
 } from './share-notes.schema'
 
 import { ShareNoteService, getOptions } from './share-notes.class'
@@ -29,7 +32,10 @@ export const shareNote = (app: Application) => {
     // A list of all methods this service exposes externally
     methods: shareNoteMethods,
     // You can add additional custom events to be sent to clients here
-    events: []
+    events: [],
+    docs: createSwaggerServiceOptions({
+      schemas: { shareNoteSchema, shareNoteDataSchema, shareNoteQuerySchema }
+    })
   })
   // Initialize hooks
   app.service(shareNotePath).hooks({

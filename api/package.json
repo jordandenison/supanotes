@@ -63,9 +63,13 @@
     "@feathersjs/socketio": "^5.0.11",
     "@feathersjs/transport-commons": "^5.0.11",
     "@feathersjs/typebox": "^5.0.11",
+    "feathers-swagger": "^3.0.0",
     "knex": "^3.0.1",
+    "koa-mount": "^4.0.0",
+    "koa-static": "^5.0.0",
     "objection": "^3.1.2",
     "pg": "^8.11.3",
+    "swagger-ui-dist": "^5.10.0",
     "uuid": "^9.0.1",
     "winston": "^3.11.0"
   },

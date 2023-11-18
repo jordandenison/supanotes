@@ -1,7 +1,7 @@
 // For more information about this file see https://dove.feathersjs.com/guides/cli/service.html
 import { authenticate } from '@feathersjs/authentication'
-
 import { hooks as schemaHooks } from '@feathersjs/schema'
+import { createSwaggerServiceOptions } from 'feathers-swagger'
 
 import type { Application } from '../../declarations'
 import {
@@ -12,7 +12,11 @@ import {
   userExternalResolver,
   userDataResolver,
   userPatchResolver,
-  userQueryResolver
+  userQueryResolver,
+  userSchema,
+  userDataSchema,
+  userPatchSchema,
+  userQuerySchema
 } from './users.schema'
 
 import { UserService, getOptions } from './users.class'
@@ -28,7 +32,10 @@ export const user = (app: Application) => {
     // A list of all methods this service exposes externally
     methods: userMethods,
     // You can add additional custom events to be sent to clients here
-    events: []
+    events: [],
+    docs: createSwaggerServiceOptions({
+      schemas: { userSchema, userDataSchema, userPatchSchema, userQuerySchema }
+    })
   })
   // Initialize hooks
   app.service(userPath).hooks({
