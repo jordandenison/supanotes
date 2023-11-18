@@ -4,6 +4,7 @@ import { authenticate } from '@feathersjs/authentication'
 import { hooks as schemaHooks } from '@feathersjs/schema'
 
 import type { Application } from '../../declarations'
+import { setUserId } from '../../hooks/set-user-id'
 import {
   noteDataValidator,
   notePatchValidator,
@@ -17,6 +18,7 @@ import {
 
 import { NoteService, getOptions } from './notes.class'
 import { notePath, noteMethods } from './notes.shared'
+
 
 export * from './notes.class'
 export * from './notes.schema'
@@ -43,7 +45,11 @@ export const note = (app: Application) => {
       all: [schemaHooks.validateQuery(noteQueryValidator), schemaHooks.resolveQuery(noteQueryResolver)],
       find: [],
       get: [],
-      create: [schemaHooks.validateData(noteDataValidator), schemaHooks.resolveData(noteDataResolver)],
+      create: [
+        schemaHooks.validateData(noteDataValidator),
+        schemaHooks.resolveData(noteDataResolver),
+        setUserId
+      ],
       patch: [schemaHooks.validateData(notePatchValidator), schemaHooks.resolveData(notePatchResolver)],
       remove: []
     },
