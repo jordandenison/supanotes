@@ -1,7 +1,7 @@
 {
   "name": "supanotes",
   "description": "A simple note creating and sharing API",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "homepage": "",
   "private": true,
   "keywords": [
