@@ -1,4 +1,3 @@
-// For more information about this file see https://dove.feathersjs.com/guides/cli/service.test.html
 import assert from 'assert'
 import axios from 'axios'
 import rest from '@feathersjs/rest-client'

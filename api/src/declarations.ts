@@ -10,7 +10,9 @@ export { NextFunction }
 
 // The types for app.get(name) and app.set(name)
 // eslint-disable-next-line
-export interface Configuration extends ApplicationConfiguration {}
+export interface Configuration extends ApplicationConfiguration {
+  rateLimits: Record<'limit' | 'timeFrame', number>
+}
 
 // A mapping of service names to types. Will be extended in service files.
 // eslint-disable-next-line

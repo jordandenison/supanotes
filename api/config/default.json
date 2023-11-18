@@ -3,11 +3,16 @@
   "port": 3001,
   "public": "./public/",
   "origins": [
-    "http://denisonweb-local-development.com/:3001"
+    "http://api:3001",
+    "https://supanotes.denisonweb.com"
   ],
   "paginate": {
     "default": 10,
     "max": 50
+  },
+  "rateLimits": {
+    "limit": 10,
+    "timeFrame": 60000
   },
   "postgresql": {
     "client": "pg",
@@ -25,7 +30,7 @@
       "header": {
         "typ": "access"
       },
-      "audience": "https://yourdomain.com",
+      "audience": "https://supanotes.denisonweb.com",
       "algorithm": "HS256",
       "expiresIn": "1d"
     },

@@ -135,7 +135,7 @@ describe('share-notes service', () => {
 
   it('users cannot find share notes externally', async () => {
     try {
-      await (clients[0].service('share-notes')).find({})
+      await clients[0].service('share-notes').find({})
       assert.fail('Should not reach this point')
     } catch (e: unknown) {
       const error = e as FeathersError
@@ -149,7 +149,7 @@ describe('share-notes service', () => {
     const note = await clients[0].service('notes').create({ title, body })
     const shareNote = await clients[0].service('share-notes').create({ noteId: note.id, userId: users[1].id })
     try {
-      await (clients[0].service('share-notes')).get(shareNote.id)
+      await clients[0].service('share-notes').get(shareNote.id)
       assert.fail('Should not reach this point')
     } catch (e: unknown) {
       const error = e as FeathersError

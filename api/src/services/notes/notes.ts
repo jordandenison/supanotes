@@ -5,6 +5,7 @@ import { createSwaggerServiceOptions } from 'feathers-swagger'
 
 import type { Application } from '../../declarations'
 import { setUserId } from '../../hooks/set-user-id'
+import { rateLimit } from '../../hooks/rate-limit'
 import {
   noteDataValidator,
   notePatchValidator,
@@ -51,7 +52,11 @@ export const note = (app: Application) => {
       ]
     },
     before: {
-      all: [schemaHooks.validateQuery(noteQueryValidator), schemaHooks.resolveQuery(noteQueryResolver)],
+      all: [
+        rateLimit,
+        schemaHooks.validateQuery(noteQueryValidator),
+        schemaHooks.resolveQuery(noteQueryResolver)
+      ],
       find: [],
       get: [fetchIndividualSharedNote],
       create: [

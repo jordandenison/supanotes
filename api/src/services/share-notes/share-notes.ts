@@ -5,6 +5,7 @@ import { createSwaggerServiceOptions } from 'feathers-swagger'
 
 import type { Application } from '../../declarations'
 import { disableExternal } from '../../hooks/disable'
+import { rateLimit } from '../../hooks/rate-limit'
 import {
   shareNoteDataValidator,
   shareNoteQueryValidator,
@@ -48,6 +49,7 @@ export const shareNote = (app: Application) => {
     },
     before: {
       all: [
+        rateLimit,
         schemaHooks.validateQuery(shareNoteQueryValidator),
         schemaHooks.resolveQuery(shareNoteQueryResolver)
       ],

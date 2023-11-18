@@ -1,4 +1,3 @@
-// For more information about this file see https://dove.feathersjs.com/guides/cli/client.test.html
 import assert from 'assert'
 import axios from 'axios'
 

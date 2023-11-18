@@ -4,6 +4,7 @@ import { hooks as schemaHooks } from '@feathersjs/schema'
 import { createSwaggerServiceOptions } from 'feathers-swagger'
 
 import type { Application } from '../../declarations'
+import { rateLimit } from '../../hooks/rate-limit'
 import {
   userDataValidator,
   userPatchValidator,
@@ -49,7 +50,11 @@ export const user = (app: Application) => {
       remove: [authenticate('jwt')]
     },
     before: {
-      all: [schemaHooks.validateQuery(userQueryValidator), schemaHooks.resolveQuery(userQueryResolver)],
+      all: [
+        rateLimit,
+        schemaHooks.validateQuery(userQueryValidator),
+        schemaHooks.resolveQuery(userQueryResolver)
+      ],
       find: [],
       get: [],
       create: [schemaHooks.validateData(userDataValidator), schemaHooks.resolveData(userDataResolver)],

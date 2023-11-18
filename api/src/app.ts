@@ -13,7 +13,6 @@ import { authentication } from './authentication'
 import { services } from './services/index'
 import { channels } from './channels'
 
-
 const app: Application = koa(feathers())
 
 // Load our app configuration (see config/ folder)
@@ -147,7 +146,7 @@ app.configure(
         }
       }
     },
-    ui: swagger.swaggerUI({})
+    ui: swagger.swaggerUI({}) // eslint-disable-line
   })
 )
 app.configure(postgresql)
@@ -159,7 +158,6 @@ app.hooks({
   around: {
     all: [logError]
   },
-  before: {},
   after: {},
   error: {}
 })
