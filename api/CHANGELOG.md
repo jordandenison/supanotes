@@ -1,5 +1,10 @@
 # Changelog
 
+## [1.1.0] - 2023-11-18
+
+### Added
+- `share-notes` enable real-time for shared notes
+
 ## [1.0.0] - 2023-11-18
 
 ### Added
