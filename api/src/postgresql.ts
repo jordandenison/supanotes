@@ -16,7 +16,7 @@ export const postgresql = (app: Application) => {
     config.connection = {
       connectionString: process.env.DATABASE_URL,
       ssl: { rejectUnauthorized: false }
-    } as any
+    } as any // eslint-disable-line
   }
 
   const db = knex(

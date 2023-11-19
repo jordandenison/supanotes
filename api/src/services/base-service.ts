@@ -41,7 +41,7 @@ export class BaseService<
   async patch(id: Id, data: C, params?: B): Promise<T>
   async patch(id: null, data: C, params?: B): Promise<T[]>
   async patch(id: NullableId | Id | null, data: C, params?: B): Promise<T | T[]> {
-    ;(data as IHasUpdatedAt).updatedAt = new Date()
+    (data as IHasUpdatedAt).updatedAt = new Date()
 
     return super.patch(id, data, params)
   }
