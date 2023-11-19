@@ -69,7 +69,6 @@
     "koa-static": "^5.0.0",
     "objection": "^3.1.2",
     "pg": "^8.11.3",
-    "supanotes": "https://supanotes.denisonweb.com/supanotes-0.0.2.tgz",
     "swagger-ui-dist": "^5.10.0",
     "uuid": "^9.0.1",
     "winston": "^3.11.0"
