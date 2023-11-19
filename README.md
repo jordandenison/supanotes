@@ -33,8 +33,8 @@ This app is currently running at https://supanotes.denisonweb.com.
 
 ## Running Tests
 
-To run the tests, use the following command in the project directory while docker is running:  
-```docker exec -t supanotes-api-1 npm test```
+1. To run the tests, run the following command while the app is running in docker:  
+   ```docker exec -t supanotes-api-1 npm test```
 
 ## Contact
 
