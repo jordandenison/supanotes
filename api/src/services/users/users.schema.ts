@@ -13,7 +13,9 @@ export const userSchema = Type.Object(
   {
     id: Type.String({ format: 'uuid' }),
     username: Type.String(),
-    password: Type.Optional(Type.String())
+    password: Type.Optional(Type.String()),
+    createdAt: Type.String({ format: 'date-time' }),
+    updatedAt: Type.String({ format: 'date-time' })
   },
   { $id: 'User', additionalProperties: false }
 )

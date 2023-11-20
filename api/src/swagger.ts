@@ -74,7 +74,7 @@ export const getSwaggerConfig = () => {
                           }
                         },
                         user: {
-                          $ref: '#/components/schemas/user'
+                          $ref: '#/components/schemas/User'
                         }
                       }
                     }
@@ -105,15 +105,6 @@ export const getSwaggerConfig = () => {
               password: { type: 'string' }
             },
             required: ['strategy', 'username', 'password']
-          },
-          user: {
-            type: 'object',
-            properties: {
-              id: { type: 'string', format: 'uuid' },
-              username: { type: 'string' },
-              createdAt: { type: 'string', format: 'date-time' },
-              updatedAt: { type: 'string', format: 'date-time' }
-            }
           }
         }
       }
