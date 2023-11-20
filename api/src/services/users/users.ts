@@ -35,7 +35,10 @@ export const user = (app: Application) => {
     // You can add additional custom events to be sent to clients here
     events: [],
     docs: createSwaggerServiceOptions({
-      schemas: { userSchema, userDataSchema, userPatchSchema, userQuerySchema }
+      schemas: { userSchema, userDataSchema, userPatchSchema, userQuerySchema },
+      docs: {
+        securities: ['all']
+      }
     })
   })
   // Initialize hooks

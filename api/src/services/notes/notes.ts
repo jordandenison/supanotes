@@ -39,7 +39,10 @@ export const note = (app: Application) => {
     // You can add additional custom events to be sent to clients here
     events: [],
     docs: createSwaggerServiceOptions({
-      schemas: { noteSchema, noteDataSchema, notePatchSchema, noteQuerySchema }
+      schemas: { noteSchema, noteDataSchema, notePatchSchema, noteQuerySchema },
+      docs: {
+        securities: ['all']
+      }
     })
   })
   // Initialize hooks
