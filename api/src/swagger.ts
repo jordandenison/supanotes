@@ -10,13 +10,6 @@ declare module '@feathersjs/feathers' {
 export const getSwaggerConfig = () => {
   return swagger({
     specs: {
-      securitySchemes: {
-        BearerAuth: {
-          type: 'http',
-          scheme: 'bearer',
-          bearerFormat: 'JWT'
-        }
-      },
       security: [{ BearerAuth: [] }],
       info: {
         title: 'Supanotes API documentation',
