@@ -22,7 +22,6 @@ export const noteSchema = Type.Object(
 export type Note = Static<typeof noteSchema>
 export const noteValidator = getValidator(noteSchema, dataValidator)
 export const noteResolver = resolve<Note, HookContext<NoteService>>({})
-
 export const noteExternalResolver = resolve<Note, HookContext<NoteService>>({})
 
 // Schema for creating new entries
@@ -39,7 +38,7 @@ export const noteDataValidator = getValidator(noteDataSchema, dataValidator)
 export const noteDataResolver = resolve<Note, HookContext<NoteService>>({})
 
 // Schema for updating existing entries
-export const notePatchSchema = Type.Partial(noteSchema, {
+export const notePatchSchema = Type.Pick(noteSchema, ['body', 'title'], {
   $id: 'NotePatch'
 })
 export type NotePatch = Static<typeof notePatchSchema>

@@ -42,7 +42,7 @@ export const userDataResolver = resolve<User, HookContext<UserService>>({
 })
 
 // Schema for updating existing entries
-export const userPatchSchema = Type.Partial(userSchema, {
+export const userPatchSchema = Type.Pick(userSchema, ['username', 'password'], {
   $id: 'UserPatch'
 })
 export type UserPatch = Static<typeof userPatchSchema>
