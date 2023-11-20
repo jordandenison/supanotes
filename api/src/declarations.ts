@@ -2,6 +2,7 @@
 import type { HookContext as FeathersHookContext } from '@feathersjs/feathers'
 import { NextFunction } from '@feathersjs/feathers'
 import type { Application as FeathersApplication } from '@feathersjs/koa'
+import type { ServiceSwaggerOptions } from 'feathers-swagger'
 import type { ApplicationConfiguration } from './configuration'
 
 import type { User } from './services/users/users'
@@ -28,5 +29,8 @@ export type HookContext<S = any> = FeathersHookContext<Application, S> // eslint
 declare module '@feathersjs/feathers' {
   interface Params {
     user?: User
+  }
+  interface ServiceOptions {
+    docs?: ServiceSwaggerOptions
   }
 }
