@@ -12,7 +12,7 @@ export const channels = (app: Application) => {
   })
 
   app.service('share-notes').publish('created', (data: ShareNote) => {
-    const shareNote = (Array.isArray(data) ? data[0] : data)
+    const shareNote = Array.isArray(data) ? data[0] : data
     return app.channel(shareNote.userId)
   })
 }

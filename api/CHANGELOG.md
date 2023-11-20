@@ -2,6 +2,11 @@
 
 ## [1.1.0] - 2023-11-18
 
+### Fixed
+- `swagger-ui` authorization
+
+## [1.1.0] - 2023-11-18
+
 ### Added
 - `share-notes` enable real-time for shared notes
 

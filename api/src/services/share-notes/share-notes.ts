@@ -35,7 +35,10 @@ export const shareNote = (app: Application) => {
     // You can add additional custom events to be sent to clients here
     events: [],
     docs: createSwaggerServiceOptions({
-      schemas: { shareNoteSchema, shareNoteDataSchema, shareNoteQuerySchema }
+      schemas: { shareNoteSchema, shareNoteDataSchema, shareNoteQuerySchema },
+      docs: {
+        securities: ['all']
+      }
     })
   })
   // Initialize hooks
