@@ -6,13 +6,13 @@
 
 ## Getting Started
 
-Before you begin, make sure you have [Git](https://git-scm.com/), [Docker](https://www.docker.com/), and [Docker Compose](https://docs.docker.com/compose/) installed on your system.
+Before you begin, make sure you have either [Git](https://git-scm.com/), [Docker](https://www.docker.com/), and [Docker Compose](https://docs.docker.com/compose/) or [Node.js](https://nodejs.org/) and [Postgres 15](https://www.postgresql.org/) installed on your system.
 
 ## Current deployment
 
-This app is currently running at https://supanotes.denisonweb.com.
+This app is currently running at https://supanotes.denisonweb.com. API documentation can be found at https://supanotes.denisonweb.com/docs/.
 
-### Installation
+### Installation with Docker Compose
 
 1. Clone the repository:  
   ```git clone https://github.com/jordandenison/supanotes.git```
@@ -23,10 +23,30 @@ This app is currently running at https://supanotes.denisonweb.com.
 3. Start the app with Docker Compose:  
    ```docker compose up```
 
-### Installating the typed front-end client to be used with React/Vue.s/Angular etc
+### Installation without Docker
+
+1. Clone the repository:  
+  ```git clone https://github.com/jordandenison/supanotes.git```
+
+2. Navigate to the api directory:  
+   ```cd supanotes/api```
+
+3. Install dependencies:  
+   ```npm i```
+
+4. Set the following environment variables:  
+   ```DATABASE_URL```
+   ```FEATHERS_SECRET```
+   ```HOSTNAME (optional)```
+   ```PORT (optional)```
+
+5. Start the app:  
+   ```npm run dev```
+
+### Installating the typed front-end client to be used with React/Vue/Angular etc
 
 1. Install with npm:  
-  ```npm install https://supanotes.denisonweb.com/supanotes-1.0.0.tgz```
+  ```npm install https://supanotes.denisonweb.com/supanotes-1.1.1.tgz```
 
 2. Example usage  
    ```visit https://feathersjs.com/api/client.html```
@@ -35,6 +55,11 @@ This app is currently running at https://supanotes.denisonweb.com.
 
 1. To run the tests, run the following command while the app is running in docker:  
    ```docker exec -t supanotes-api-1 npm test```
+
+## Running Tests without Docker
+
+1. To run the tests, run the following command while the app is running:  
+   ```npm test```
 
 ## Contact
 
