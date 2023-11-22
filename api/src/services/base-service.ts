@@ -1,13 +1,9 @@
-import type { Id, NullableId, Params } from '@feathersjs/feathers'
+import type { Id, NullableId } from '@feathersjs/feathers'
 import type { KnexAdapterParams } from '@feathersjs/knex'
 import { KnexService } from '@feathersjs/knex'
 import { v4 as uuidv4 } from 'uuid'
 
-const processNewData = <A extends { id?: string; accountId?: string; userId?: string }>(
-  data: A,
-  table: string,
-  params?: Params
-): A => {
+const processNewData = <A extends { id?: string; accountId?: string; userId?: string }>(data: A): A => {
   const newData = { ...data, createdAt: new Date(), updatedAt: new Date() } as A
 
   if (!newData.id) {
@@ -31,8 +27,8 @@ export class BaseService<
   async create(data: A[], params?: B): Promise<T[]>
   async create(data: A | A[], params?: B): Promise<T | T[]> {
     const newData: A | A[] = Array.isArray(data)
-      ? data.map((item: A) => processNewData<A>(item, this.fullName, params))
-      : processNewData<A>(data, this.fullName, params)
+      ? data.map((item: A) => processNewData<A>(item))
+      : processNewData<A>(data)
 
     return super.create(newData, params)
   }

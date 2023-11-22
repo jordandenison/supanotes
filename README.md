@@ -46,7 +46,7 @@ This app is currently running at https://supanotes.denisonweb.com. API documenta
 ### Installating the typed front-end client to be used with React/Vue/Angular etc
 
 1. Install with npm:  
-  ```npm install https://supanotes.denisonweb.com/supanotes-1.1.1.tgz```
+  ```npm install https://supanotes.denisonweb.com/supanotes-1.1.3.tgz```
 
 2. Example usage  
    ```visit https://feathersjs.com/api/client.html```

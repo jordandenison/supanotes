@@ -6,7 +6,7 @@ import { v4 as uuidv4 } from 'uuid'
 
 import { app } from '../../../src/app'
 import { createClient } from '../../../src/client'
-import type { User } from '../../../src/client'
+import type { Note, User } from '../../../src/client'
 
 const appUrl = `http://${app.get('host')}:${app.get('port')}`
 
@@ -77,12 +77,12 @@ describe('share-notes service', () => {
   it('users can share the same note with multiple other users', async () => {
     const title = `Test note ${uuidv4()}`
     const body = 'Test body of the test note'
-    const note = await clients[0].service('notes').create({ title, body })
+    const newNote = await clients[0].service('notes').create({ title, body })
     const { total: initialTotal1 } = await clients[1].service('notes').find({})
     const { total: initialTotal2 } = await clients[2].service('notes').find({})
 
-    await clients[0].service('share-notes').create({ noteId: note.id, userId: users[1].id })
-    await clients[0].service('share-notes').create({ noteId: note.id, userId: users[2].id })
+    await clients[0].service('share-notes').create({ noteId: newNote.id, userId: users[1].id })
+    await clients[0].service('share-notes').create({ noteId: newNote.id, userId: users[2].id })
     const { total: finalTotal1, data: finalData1 } = await clients[1].service('notes').find({})
     const { total: finalTotal2, data: finalData2 } = await clients[2].service('notes').find({})
 
@@ -90,8 +90,8 @@ describe('share-notes service', () => {
     assert.equal(initialTotal2, 0)
     assert.equal(finalTotal1, 3)
     assert.equal(finalTotal2, 1)
-    assert.equal(note.id, finalData1[2].id)
-    assert.equal(note.id, finalData2[0].id)
+    assert.ok(finalData1.some((note: Note) => note.id === newNote.id))
+    assert.ok(finalData2.some((note: Note) => note.id === newNote.id))
   })
 
   it("users cannot share other users's notes", async () => {
