@@ -1,6 +1,11 @@
 # Changelog
 
-## [1.1.0] - 2023-11-18
+## [1.1.2] - 2023-11-22
+
+### Fixed
+- `notes` can now edit title or body of note instead of requiring both
+
+## [1.1.1] - 2023-11-18
 
 ### Fixed
 - `swagger-ui` authorization

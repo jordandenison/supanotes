@@ -37,9 +37,9 @@ export class BaseService<
     return super.create(newData, params)
   }
 
-  async patch(id: NullableId, data: C, params?: B): Promise<T[]>
   async patch(id: Id, data: C, params?: B): Promise<T>
   async patch(id: null, data: C, params?: B): Promise<T[]>
+  async patch(id: NullableId, data: C, params?: B): Promise<T | T[]>
   async patch(id: NullableId | Id | null, data: C, params?: B): Promise<T | T[]> {
     (data as IHasUpdatedAt).updatedAt = new Date()
 

@@ -38,7 +38,7 @@ export const noteDataValidator = getValidator(noteDataSchema, dataValidator)
 export const noteDataResolver = resolve<Note, HookContext<NoteService>>({})
 
 // Schema for updating existing entries
-export const notePatchSchema = Type.Pick(noteSchema, ['body', 'title'], {
+export const notePatchSchema = Type.Partial(Type.Pick(noteSchema, ['body', 'title']), {
   $id: 'NotePatch'
 })
 export type NotePatch = Static<typeof notePatchSchema>

@@ -128,6 +128,26 @@ describe('notes service', () => {
     }
   })
 
+  it("users can edit a note's title", async () => {
+    const title = `Test note ${uuidv4()}`
+    const body = 'Test body of the test note'
+    const note = await clients[0].service('notes').create({ title, body })
+    const newTitle = `New test note ${uuidv4()} title`
+    const patchedNote = await clients[0].service('notes').patch(note.id, { title: newTitle })
+
+    assert.equal(patchedNote.title, newTitle)
+  })
+
+  it("users can edit a note's title", async () => {
+    const title = `Test note ${uuidv4()}`
+    const body = 'Test body of the test note'
+    const note = await clients[0].service('notes').create({ title, body })
+    const newBody = `New test note body`
+    const patchedNote = await clients[0].service('notes').patch(note.id, { body: newBody })
+
+    assert.equal(patchedNote.body, newBody)
+  })
+
   it('throws an error when title is missing', async () => {
     try {
       await app.service('notes').create({ body: 'This note has no title.' } as NoteData)
