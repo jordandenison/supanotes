@@ -1,5 +1,10 @@
 # Changelog
 
+## [1.1.3] - 2023-11-22
+
+### Changed
+- `users` only allow users to edit their password and not their username
+
 ## [1.1.2] - 2023-11-22
 
 ### Fixed
