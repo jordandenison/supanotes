@@ -8,10 +8,6 @@
 
 Before you begin, make sure you have either [Git](https://git-scm.com/), [Docker](https://www.docker.com/), and [Docker Compose](https://docs.docker.com/compose/) or [Node.js](https://nodejs.org/) and [Postgres 15](https://www.postgresql.org/) installed on your system.
 
-## Current deployment
-
-This app is currently running at https://supanotes.denisonweb.com. API documentation can be found at https://supanotes.denisonweb.com/docs/.
-
 ### Installation with Docker Compose
 
 1. Clone the repository:  
