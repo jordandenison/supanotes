@@ -9,6 +9,7 @@ declare module '@feathersjs/feathers' {
 
 export const getSwaggerConfig = () => {
   return swagger({
+    idType: 'string',
     specs: {
       security: [{ BearerAuth: [] }],
       info: {
